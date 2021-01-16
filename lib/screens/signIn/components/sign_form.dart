@@ -1,5 +1,6 @@
 import 'package:ecom/components/default_button.dart';
 import 'package:ecom/components/form_error.dart';
+import 'package:ecom/screens/forgot_password/forgot_password_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../../../constants.dart';
@@ -39,9 +40,12 @@ class SignForm extends StatefulWidget {
                  } ),
                Text("Remember me"),
                Spacer(),
-               Text(
-                 "Forgot Password",
-                 style: TextStyle(decoration: TextDecoration.underline),
+               GestureDetector(
+                 onTap: ()=> Navigator.of(context).popAndPushNamed(ForgotPasswordScreen.routeName),
+                   child: Text(
+                   "Forgot Password",
+                   style: TextStyle(decoration: TextDecoration.underline),
+                 ),
                )
              ],),
            FormError(errors: errors),

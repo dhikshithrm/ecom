@@ -6,10 +6,7 @@ class SignInScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Center(child: Text("Sign in")),
-        actions: [
-          Container(width: 20,)
-        ],
+        title: Text("Sign in"),
         ),
         body: Body(),
     );
