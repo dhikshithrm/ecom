@@ -1,4 +1,4 @@
-import 'package:ecom/screens/signIn/body.dart';
+import 'package:ecom/screens/signIn/components/body.dart';
 import 'package:flutter/material.dart';
 class SignInScreen extends StatelessWidget {
   static String routeName = "/sign_in";

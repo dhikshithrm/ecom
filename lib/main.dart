@@ -1,4 +1,3 @@
-import 'package:ecom/constants.dart';
 import 'package:ecom/screens/splash/routes.dart';
 import 'package:ecom/screens/splash/splash_screen.dart';
 import 'package:ecom/theme.dart';

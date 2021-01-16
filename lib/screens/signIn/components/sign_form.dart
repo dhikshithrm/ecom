@@ -1,42 +1,12 @@
-import 'package:ecom/components/customSvgIcon.dart';
 import 'package:ecom/components/default_button.dart';
 import 'package:ecom/components/form_error.dart';
-import 'package:ecom/constants.dart';
-import 'package:ecom/size_config.dart';
 import 'package:flutter/material.dart';
 
-class Body extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return SafeArea(
-      child: SizedBox(
-        width: double.infinity,
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(20)),
-          child: Column(
-            children: [
-              Text(
-                "Welcome Back",
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: getProportionateScreenWidth(28)
-                ),
-              ),
-              Text(
-                "Sign in with your email and password \nor continue with social accounts",
-                textAlign: TextAlign.center,
-              ),
-              SignForm(),
-            ],
-            ),
-        ),
-      ) 
-      );
-  }
- }
+import '../../../constants.dart';
+import '../../../size_config.dart';
+import 'customSvgIcon.dart';
 
- 
- class SignForm extends StatefulWidget {
+class SignForm extends StatefulWidget {
    @override
    _SignFormState createState() => _SignFormState();
  }
@@ -44,6 +14,7 @@ class Body extends StatelessWidget {
  class _SignFormState extends State<SignForm> {
    String email;
    String password;
+   bool remember = false;
    final _formKey = GlobalKey<FormState>();
    final List<String> errors = [];
    @override
@@ -56,7 +27,26 @@ class Body extends StatelessWidget {
            SizedBox(height: getProportionateScreenHeight(20)),
            buildPasswordFormField(),
            SizedBox(height: getProportionateScreenHeight(20),),
+           Row(
+             children: [
+               Checkbox(
+                 activeColor: kPrimaryColor,
+                 value: remember,
+                 onChanged: (value){
+                   setState(() {
+                     remember = value;
+                   });
+                 } ),
+               Text("Remember me"),
+               Spacer(),
+               Text(
+                 "Forgot Password",
+                 style: TextStyle(decoration: TextDecoration.underline),
+               )
+             ],),
            FormError(errors: errors),
+           SizedBox(height: getProportionateScreenHeight(20),),
+           
            DefaultButton(text: "Continue",press: (){
              if(_formKey.currentState.validate()){
                _formKey.currentState.save();
@@ -70,6 +60,17 @@ class Body extends StatelessWidget {
    TextFormField buildPasswordFormField() {
      return TextFormField(
            onSaved: (newValue) => password = newValue,
+           onChanged: (value){
+             if(value.isNotEmpty && errors.contains(kPassNullError)){
+               setState(() {
+                 errors.remove(kPassNullError);
+               });
+             }else if(value.length >=4 && errors.contains(kShortPassError)){
+               setState(() {
+                 errors.remove(kShortPassError);
+               });
+             }
+           },
            validator: (value){
              if(value.isEmpty && !errors.contains(kPassNullError)){
                setState(() {
@@ -127,4 +128,3 @@ class Body extends StatelessWidget {
          );
    }
  }
-
