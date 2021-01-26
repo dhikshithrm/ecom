@@ -1,4 +1,5 @@
 import 'package:ecom/components/default_button.dart';
+import 'package:ecom/components/formFields.dart';
 import 'package:ecom/components/form_error.dart';
 import 'package:ecom/components/no_account_text.dart';
 import 'package:ecom/screens/signIn/components/customSvgIcon.dart';
@@ -52,39 +53,14 @@ class Body extends StatelessWidget {
    Widget build(BuildContext context) {
      return Form(
        child: Column(
-         children: [TextFormField(
-           keyboardType: TextInputType.emailAddress,
-           onSaved: (newValue) => email = newValue,
-           onChanged: (value){
-             if(value.isNotEmpty && errors.contains(kEmailNullError)){
-               setState(() {
-               errors.remove(kEmailNullError);
-             });
-             }else if(emailValidatorRegExp.hasMatch(value) && errors.contains(kInvalidEmailError)){
-               setState(() {
-                 errors.remove(kInvalidEmailError);
-               });
-             }
-             return null;
-           },
-           validator: (value){
-             if(value.isEmpty && !errors.contains(kEmailNullError)){
-               setState(() {
-               errors.add(kEmailNullError);
-             });
-             }else if(!emailValidatorRegExp.hasMatch(value) && !errors.contains(kInvalidEmailError)){
-               setState(() {
-                 errors.add(kInvalidEmailError);
-               });
-             }
-             return null;
-           },
-           decoration: InputDecoration(
-             labelText: "Email",
-             hintText: "Enter your email",
-             suffixIcon: CustomSuffixIcon(svgIcon: "assets/icons/Mail.svg",)
-           )
-         ),
+         children: [
+         GenericFormField(
+           errors: errors,
+           header: "Email",
+           header_value: email,
+           setState: this.setState,
+           trailing_Svgicon: "assets/icons/Mail.svg"
+         ).buildFormField(),
          SizedBox(height: getProportionateScreenHeight(30)),
          FormError(errors: errors),
          SizedBox(height: SizeConfig.screenHeight * 0.1),
