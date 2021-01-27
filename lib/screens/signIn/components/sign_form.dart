@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:ecom/components/formFields.dart';
 import '../../../constants.dart';
 import '../../../size_config.dart';
-import 'customSvgIcon.dart';
+
 
 class SignForm extends StatefulWidget {
    @override
@@ -18,6 +18,7 @@ class SignForm extends StatefulWidget {
    bool remember = false;
    final _formKey = GlobalKey<FormState>();
    final List<String> errors = [];
+   
    @override
    Widget build(BuildContext context) {
      return Form(
@@ -33,7 +34,6 @@ class SignForm extends StatefulWidget {
            ).buildFormField(),
            SizedBox(height: getProportionateScreenHeight(20)),
            GenericFormField(
-
              header: "Password",
              errors: errors,
              header_value: password,
@@ -50,7 +50,7 @@ class SignForm extends StatefulWidget {
                    setState(() {
                      remember = value;
                    });
-                 } ),
+                 }),
                Text("Remember me"),
                Spacer(),
                GestureDetector(
