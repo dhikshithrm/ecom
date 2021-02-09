@@ -60,8 +60,3 @@ class Body extends StatelessWidget {
  }
 
 
-
-
- 
- 
-

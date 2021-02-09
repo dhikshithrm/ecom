@@ -10,34 +10,36 @@ class GenericFormField{
   final List<String> errors;
   final void Function(void Function() fn) setState;
   final String hint_text;
-
+  
   GenericFormField({this.hint_text,this.header_value, this.header, this.trailing_Svgicon, this.errors, this.setState});
 
   TextFormField buildFormField() {
+    bool isPassword = (header.toLowerCase()=="password");
+    
      return TextFormField(
            keyboardType: TextInputType.emailAddress,
-           obscureText: header.toLowerCase()=="password" || header.toLowerCase()=="confirm password",
+           obscureText: isPassword,
            onSaved: (newValue) => this.header_value = newValue,
            onChanged: (value){
-             if(value.isNotEmpty && errors.contains(kEmailNullError)){
+             if(value.isNotEmpty && errors.contains(isPassword?kPassNullError:kEmailNullError)){
                setState(() {
-                this.errors.remove(kEmailNullError);
+                this.errors.remove(isPassword?kPassNullError:kEmailNullError);
                 });
-             }else if(emailValidatorRegExp.hasMatch(value) && errors.contains(kInvalidEmailError)){
+             }else if(isPassword?value.length>3:(emailValidatorRegExp.hasMatch(value) && errors.contains(kInvalidEmailError))){
                setState(() {
-                 this.errors.remove(kInvalidEmailError);
+                 this.errors.remove(isPassword?kShortPassError:kInvalidEmailError);
                });
              }
              return null;
            },
            validator: (value){
-             if(value.isEmpty && !this.errors.contains(kEmailNullError)){
+             if(value.isEmpty && !this.errors.contains(isPassword?kPassNullError:kEmailNullError)){
                setState(() {
-               errors.add(kEmailNullError);
+               errors.add(isPassword?kPassNullError:kEmailNullError);
              });
-             }else if(!emailValidatorRegExp.hasMatch(value) && !errors.contains(kInvalidEmailError)){
+             }else if(isPassword?value.length<4:(!emailValidatorRegExp.hasMatch(value) && !errors.contains(kInvalidEmailError))){
                setState(() {
-                 this.errors.add(kInvalidEmailError);
+                 this.errors.add(isPassword?kShortPassError:kInvalidEmailError);
                });
              }
              return null;
