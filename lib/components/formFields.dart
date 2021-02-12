@@ -10,11 +10,53 @@ class GenericFormField{
   final List<String> errors;
   final void Function(void Function() fn) setState;
   final String hint_text;
+  final String password;
+
+  String get get_header_value => this.header_value;
+
   
-  GenericFormField({this.hint_text,this.header_value, this.header, this.trailing_Svgicon, this.errors, this.setState});
+  GenericFormField({this.password,this.hint_text,this.header_value, this.header, this.trailing_Svgicon, this.errors, this.setState});
 
   TextFormField buildFormField() {
     bool isPassword = (header.toLowerCase()=="password");
+    Map<String,String Function(String)> validators = {
+      "Email":(value){
+             if(value.isEmpty && !this.errors.contains(kEmailNullError)){
+               setState(() {
+                errors.add(kEmailNullError);
+                });
+             }else if(!emailValidatorRegExp.hasMatch(value) && !errors.contains(kInvalidEmailError)){
+               setState(() {
+                 this.errors.add(kInvalidEmailError);
+               });
+             }
+             return null;
+             },
+      "Password": (value){
+             if(value.isEmpty && !this.errors.contains(kPassNullError)){
+               setState(() {
+               errors.add(kPassNullError);
+              });
+               }else if(value.length<4&& !this.errors.contains(kShortPassError)){
+               setState(() {
+                 this.errors.add(kShortPassError);
+               });
+              }
+               return null;
+      },
+      "Confirm Password": (value){
+        if(value.isEmpty&&!this.errors.contains(kPassNullError)){
+          setState((){
+            errors.add(kPassNullError);
+          });
+        }else if(value!=password){
+          setState((){
+            errors.add(kMatchPassError);
+          });
+        }
+        return null;
+      }
+    };
     
      return TextFormField(
            keyboardType: TextInputType.emailAddress,
@@ -30,20 +72,10 @@ class GenericFormField{
                  this.errors.remove(isPassword?kShortPassError:kInvalidEmailError);
                });
              }
+             this.header_value = value;
              return null;
            },
-           validator: (value){
-             if(value.isEmpty && !this.errors.contains(isPassword?kPassNullError:kEmailNullError)){
-               setState(() {
-               errors.add(isPassword?kPassNullError:kEmailNullError);
-             });
-             }else if(isPassword?value.length<4:(!emailValidatorRegExp.hasMatch(value) && !errors.contains(kInvalidEmailError))){
-               setState(() {
-                 this.errors.add(isPassword?kShortPassError:kInvalidEmailError);
-               });
-             }
-             return null;
-           },
+           validator: validators[header],
            decoration: InputDecoration(
              labelText: this.header,
              hintText: hint_text??"Enter your ${this.header}",

@@ -1,30 +1,61 @@
 import 'package:ecom/components/default_button.dart';
 import 'package:ecom/components/formFields.dart';
 import 'package:ecom/components/form_error.dart';
+import 'package:ecom/components/social_card.dart';
 import 'package:ecom/screens/signIn/components/customSvgIcon.dart';
-import 'package:ecom/screens/signIn/sign_in_screen.dart';
 import 'package:ecom/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:ecom/constants.dart';
-import 'package:ecom/screens/signIn/components/sign_form.dart';
+
+import 'already_have_account_text.dart';
+
 
 class Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: double.infinity,
-      child: Column(
-        children: [
-          Text(
-            "Register Account",
-            style: headingStyle,
+    return SafeArea(
+        child: SizedBox(
+        width: double.infinity,
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(20)),
+          child: SingleChildScrollView(
+              child: Column(
+              children: [
+                SizedBox(height: SizeConfig.screenHeight*0.04,),
+                Text(
+                  "Register Account",
+                  style: headingStyle,
+                ),
+                Text(
+                  "Complete your details or continue \nwith social medial",
+                  textAlign: TextAlign.center,
+                ),
+                SizedBox(height: SizeConfig.screenHeight*0.04,),
+                SignUpForm(),
+                SizedBox(height: SizeConfig.screenHeight*0.04,),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SocialCard(
+                      icon: "assets/icons/google-icon.svg",
+                      press: (){},
+                      ),
+                    SocialCard(
+                      icon: "assets/icons/facebook-2.svg",
+                      press: (){},
+                      ),
+                    SocialCard(
+                      icon: "assets/icons/twitter.svg",
+                      press: (){},
+                      ),
+                  ],
+                ),
+                SizedBox(height: getProportionateScreenHeight(20)),
+                AHaveAccount()
+              ],
+            ),
           ),
-          Text(
-            "Complete your details or continue \nwith social medial",
-            textAlign: TextAlign.center,
-          ),
-          SignUpForm()
-        ],
+        ),
       ),
     );
   }
@@ -41,37 +72,30 @@ class Body extends StatelessWidget {
    String password;
    String conform_password;
    final List<String> errors = [];
+   
    @override
    Widget build(BuildContext context) {
+     GenericFormField passwordFormFeild = GenericFormField(
+                header: "Password",
+                errors: errors,
+                setState: this.setState,
+                trailing_Svgicon: "assets/icons/Lock.svg");
+     
      return Form(
        key: _formKey,
        child: Column(
          children: [
-           Padding(
-             padding: EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(20)),
-             child: GenericFormField(
+          GenericFormField(
                 header: "Email",
                 errors: errors,
                 header_value: email,
                 setState: this.setState,
                 trailing_Svgicon: "assets/icons/Mail.svg")
                .buildFormField(),
-           ),
            SizedBox(height: getProportionateScreenHeight(30),),
-           Padding(
-               padding: EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(20)),
-               child: GenericFormField(
-                header: "Password",
-                errors: errors,
-                header_value: password,
-                setState: this.setState,
-                trailing_Svgicon: "assets/icons/Lock.svg")
-               .buildFormField(),
-             ),
+           passwordFormFeild.buildFormField(),
            SizedBox(height: getProportionateScreenHeight(30),),
-           Padding(
-               padding: EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(20)),
-               child: TextFormField(
+           TextFormField(
                  obscureText: true,
                  onSaved: (newValue)=> conform_password=newValue,
                  onChanged: (value){
@@ -86,11 +110,11 @@ class Body extends StatelessWidget {
                  },
                  validator: (value){
                    print(email);
-                   print(password);
+                   print(passwordFormFeild.get_header_value);
                    print(conform_password);
                    if(value.isEmpty){
                      return "";
-                   }else if(password != conform_password){
+                   }else if(passwordFormFeild.get_header_value != conform_password){
                      setState(() {
                        errors.add(kMatchPassError);
                      });
@@ -103,12 +127,9 @@ class Body extends StatelessWidget {
                   suffixIcon: CustomSuffixIcon(svgIcon: "assets/icons/Lock.svg",)
                   )
                ),
-             ),
              FormError(errors: errors),
              SizedBox(height: getProportionateScreenHeight(40),),
-             Padding(
-               padding: EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(20)),
-               child: DefaultButton(
+             DefaultButton(
                  text: "Continue",
                  press: (){
                    if(_formKey.currentState.validate()){
@@ -116,7 +137,6 @@ class Body extends StatelessWidget {
                    }
                  }
                ),
-             )
          ],
        ),
      );

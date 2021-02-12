@@ -1,4 +1,3 @@
-import 'package:ecom/screens/forgot_password/forgot_password_screen.dart';
 import 'package:ecom/screens/signup/sign_up_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -6,7 +5,10 @@ import '../constants.dart';
 import '../size_config.dart';
 
 class NoAccountText extends StatelessWidget {
-  const NoAccountText({
+  final String mainText = "Don't have an account?";
+  final String subText = "Sign Up";
+  final String newPage = SignUpScreen.routeName;
+  NoAccountText({
     Key key,
   }) : super(key: key);
 
@@ -15,14 +17,14 @@ class NoAccountText extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text("Don't have an account?",style: TextStyle(
+        Text(mainText,style: TextStyle(
           fontSize: getProportionateScreenWidth(16),
         ),),
         GestureDetector(
             onTap: (){
-              Navigator.of(context).popAndPushNamed(SignUpScreen.routeName);
+              Navigator.of(context).popAndPushNamed(newPage);
             },
-            child: Text("Sign Up",style: TextStyle(
+            child: Text(subText,style: TextStyle(
             fontSize: getProportionateScreenWidth(16),
             color: kPrimaryColor
           ),),
