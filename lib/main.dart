@@ -1,3 +1,4 @@
+import 'package:ecom/screens/home/home_screen.dart';
 import 'package:ecom/screens/splash/routes.dart';
 import 'package:ecom/screens/splash/splash_screen.dart';
 import 'package:ecom/theme.dart';
@@ -15,6 +16,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: theme(),
+      home: HomeScreen(),
       initialRoute: SplashsScreen.routeName,
       routes: routes,
     );

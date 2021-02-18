@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../size_config.dart';
+
 class SocialCard extends StatelessWidget {
   const SocialCard({
     Key key, this.icon, this.press,
