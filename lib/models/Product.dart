@@ -5,16 +5,18 @@ class Product{
   final String description;
   final List<String> images;
   final List<Color> colors;
-  final double rating,price;
+  final double rating,price,id;
   final bool isFavourite,isPopular;
+
  Product({this.title,
     @required this.description,
    @required this.images,
    @required  this.colors,
       this.rating = 0.0, 
    @required    this.price, 
+   this.id,
       this.isFavourite = false, 
-      this.isPopular= false,
+      this.isPopular= false, 
  });
 }
 
@@ -33,6 +35,7 @@ List<Product> demoProducts = [
       Color(0xFFDECB9C),
       Colors.white,
     ],
+    id: 1,
     title: "Wireless Controller for PS4™",
     price: 64.99,
     description:" description",
@@ -50,6 +53,7 @@ List<Product> demoProducts = [
       Color(0xFFDECB9C),
       Colors.white,
     ],
+    id: 2,
     title: "Nike Sport White - Man Pant",
     price: 50.5,
     description: "description",
@@ -67,6 +71,7 @@ List<Product> demoProducts = [
       Color(0xFFDECB9C),
       Colors.white,
     ],
+    id: 3,
     title: "Gloves XC Omega - Polygon",
     price: 36.55,
     description: "description",
@@ -75,7 +80,7 @@ List<Product> demoProducts = [
     isPopular: true,
   ),
   Product(
-  
+    price: 23.22,
     images: [
       "assets/images/wireless headset.png",
     ],
@@ -85,8 +90,9 @@ List<Product> demoProducts = [
       Color(0xFFDECB9C),
       Colors.white,
     ],
+
     title: "Logitech Headphones",
-    price: 20.20,
+    id: 4,
     description: "description",
     rating: 4.1,
     isFavourite: true,
