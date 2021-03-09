@@ -22,10 +22,10 @@ class DiscountBanner extends StatelessWidget {
         borderRadius: BorderRadius.circular(20),
       ),
       child:Text.rich(
-        TextSpan(text: "A Summer Surprise\n",
+        TextSpan(text: "VERSAT Online Store\n",
         style: TextStyle(color: Colors.white),
         children: [
-          TextSpan(text: "Cashback 20%",
+          TextSpan(text: "Digitising Businesses ",
           style: TextStyle(fontSize: 24,
           fontWeight: FontWeight.bold)),
           
