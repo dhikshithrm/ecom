@@ -80,7 +80,7 @@ List<Product> demoProducts = [
     isPopular: true,
   ),
   Product(
-  
+    price: 23.22,
     images: [
       "assets/images/wireless headset.png",
     ],
@@ -90,9 +90,9 @@ List<Product> demoProducts = [
       Color(0xFFDECB9C),
       Colors.white,
     ],
-    id:4,
-    title: "Logitech Head",
-    price: 20.20,
+
+    title: "Logitech Headphones",
+    id: 4,
     description: "description",
     rating: 4.1,
     isFavourite: true,
