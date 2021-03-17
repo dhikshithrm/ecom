@@ -1,4 +1,5 @@
 import 'package:ecom/screens/home/home_screen.dart';
+import 'package:ecom/screens/message/message_screen.dart';
 import 'package:ecom/screens/profile/profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -47,7 +48,7 @@ final MenuState selectedMenu;
                          color: MenuState.message == selectedMenu 
             ?kPrimaryColor
             :inActiveIconColor,),
-             onPressed: (){}),
+             onPressed: ()=>Navigator.pushNamed(context, MessageScreen.routeName)),
              IconButton(icon: SvgPicture.asset("assets/icons/User Icon.svg",
                          color: MenuState.profile == selectedMenu 
             ?kPrimaryColor
