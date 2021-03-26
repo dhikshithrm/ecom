@@ -1,3 +1,4 @@
+import 'package:ecom/screens/Favourites/favourites_screen.dart';
 import 'package:ecom/screens/home/home_screen.dart';
 import 'package:ecom/screens/message/message_screen.dart';
 import 'package:ecom/screens/profile/profile_screen.dart';
@@ -43,7 +44,7 @@ final MenuState selectedMenu;
                          color: MenuState.favourite == selectedMenu 
             ?kPrimaryColor
             :inActiveIconColor,),
-             onPressed: (){}),
+             onPressed: ()=>Navigator.pushNamed(context, FavouritesScreen.routeName)),
              IconButton(icon: SvgPicture.asset("assets/icons/Chat bubble Icon.svg",
                          color: MenuState.message == selectedMenu 
             ?kPrimaryColor

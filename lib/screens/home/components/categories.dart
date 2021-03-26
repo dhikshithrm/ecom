@@ -10,7 +10,7 @@ class Categories extends StatelessWidget {
   Widget build(BuildContext context) {
     List<Map<String,dynamic>> categories = [
       {"icon":"assets/icons/Flash Icon.svg","text":"Grocery"},
-      {"icon":"assets/icons/medical-pharmacy-store.svg","text":"Medical"},
+      {"icon":"assets/icons/Bill Icon.svg","text":"Medical"},
       {"icon":"assets/icons/Game Icon.svg","text":"Staion\naries"},
       {"icon":"assets/icons/Gift Icon.svg","text":"Super Marts"},
       {"icon":"assets/icons/Flash Icon.svg","text":"Clothing"},

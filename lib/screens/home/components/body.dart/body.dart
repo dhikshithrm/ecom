@@ -1,5 +1,6 @@
 import 'package:ecom/constants.dart';
 import 'package:ecom/models/Product.dart';
+import 'package:ecom/screens/home/components/shops_around.dart';
 import 'package:ecom/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -29,12 +30,14 @@ class Body extends StatelessWidget {
             Categories(),
             SizedBox(height: getProportionateScreenWidth(30)),
             
-            SpecialOffers(),
-            SizedBox(height: getProportionateScreenWidth(30)),
+           // SpecialOffers(),
+           // SizedBox(height: getProportionateScreenWidth(30)),
 
            
             PopularProducts(),
-            SizedBox(height: getProportionateScreenWidth(30)),
+            SizedBox(height: getProportionateScreenWidth(40)),
+
+            ShopsNearBy()
 
           ]
         ),

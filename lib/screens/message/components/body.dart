@@ -39,31 +39,32 @@ padding:const EdgeInsets.symmetric(horizontal: 15,vertical: 5),
                                 ),
                                 
                       horizontalTitleGap: 3,
-                                title: Row(
+                                title: 
                                   
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  children:<Widget> 
-                                  [
                                     Padding(
                                       padding:  EdgeInsets.only(left: getProportionateScreenWidth(10)),
-                                      child: Text(messageData[i].name,
-                                      
-                                      maxLines: 2,
-                                      style:TextStyle(
+                                      child: Container(
+                                        child: Text(messageData[i].name,
+                                        
+                                        overflow: TextOverflow.ellipsis ,
+                                        style:TextStyle(
 
-                                        fontWeight: FontWeight.w400,
-                                        fontSize: 18,
-                                      )),
+                                          fontWeight: FontWeight.w400,
+                                          fontSize: 18,
+                                        )),
+                                      ),
                                     ),
+                                    
                                    /* Text(
                                       messageData[i].time,
                                       style:TextStyle(
                                       color:Colors.grey,
                                       fontSize: 16.0)
                                     ),*/
-                                  IconButton(icon: Icon(Icons.call,color: Colors.green[500],), onPressed:(){}),
-                                  ],
-                                  ),
+                                 
+                                  
+                                  
+                                  trailing: IconButton(icon: Icon(Icons.call,color: Colors.black45,), onPressed:(){}) ,
                                  
                                   /*subtitle: Container(
                                     padding:EdgeInsets.only(top:5.0),

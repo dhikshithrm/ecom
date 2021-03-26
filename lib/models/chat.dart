@@ -13,7 +13,7 @@ class chat {
 
 List<chat> messageData = [
   new chat(
-      name: "We Care Online Store",
+      name: "We Care Online Store ",
       message: "Learn Code Online",
       time: "10:12",
       imageurl:("https://images.pexels.com/photos/2216607/pexels-photo-2216607.jpeg?auto=compress")),
