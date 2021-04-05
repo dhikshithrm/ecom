@@ -1,0 +1,30 @@
+versat data model
+
+user : {
+	'uid': int16,[primaryKey]
+	'userName': varchar(40),
+	'userEmail': text,
+	'emailConfirmed': bool,
+	'seller': bool
+
+}
+
+product : {
+	'pid': int32,[primarykey]
+	'productName': text(richtext),
+	'price': int16,
+	'oPrice': int16,
+	'descryption': text,
+	'photos': array[photoUrl(string)],
+	'deliveryDetails': text,
+	'sellerId': references user(uid),
+
+
+}
+
+reviews: {
+	'rid': int32,[primarykey]
+	'reviewer': references user(uid),
+	'rating': 
+
+}
