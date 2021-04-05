@@ -1,9 +1,6 @@
 
 
-
-
-
-
+import 'package:ecom/screens/Favourites/favourites_screen.dart';
 import 'package:ecom/screens/cart/cart_screen.dart';
 import 'package:ecom/screens/details_screen/details_screen.dart';
 import 'package:ecom/screens/forgot_password/forgot_password_screen.dart';
@@ -28,4 +25,5 @@ final Map<String, WidgetBuilder> routes = {
   ProfileScreen.routeName:(context)=>ProfileScreen(),
   ShopScreen.routeName:(context)=>ShopScreen(),
   MessageScreen.routeName:(context)=>MessageScreen(),
+  FavouritesScreen.routeName:(context)=>FavouritesScreen(),
 };

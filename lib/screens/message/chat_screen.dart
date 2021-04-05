@@ -133,34 +133,12 @@ class _ChatScreenState extends State<ChatScreen> {
     int  previousUserid;
     return Scaffold(
      
-      appBar:  AppBar(
-        backgroundColor: kPrimaryColor,
-        
-          leading: Row(children:[ IconButton(icon: Icon(Icons.arrow_back_ios), color:Colors.white,onPressed:(){Navigator.pop(context);}),
-          
-            ]),
-           
-            
-          
-          titleSpacing: 10,
-          
-          title: Row(children:[
-           /* CircleAvatar(
-               
-              maxRadius: 18,
-              backgroundImage:NetworkImage(widget.imageurl),
-          ), */
-         
-          Text(widget.name,style: TextStyle(fontSize: 20,fontWeight:FontWeight.w500,color: Colors.white),),
-          ]),
-          actions: [
-            IconButton(icon: Icon(Icons.call,color: Colors.white,), onPressed: null),
-            IconButton(icon: Icon(Icons.more_vert,color: Colors.white,), onPressed: null),
-
-          ],
+     appBar: AppBar(
+        title: Text(widget.name,style: Theme.of(context).textTheme.headline6,),
       ),
       body: Column(
         children:<Widget>[
+          SizedBox(height: 10,),
           Expanded(
             child: ListView.builder(
               reverse: true,
