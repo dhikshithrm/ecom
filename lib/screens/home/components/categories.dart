@@ -2,7 +2,6 @@ import 'package:ecom/constants.dart';
 import 'package:ecom/screens/shoppage/shop_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import '';
 import '../../../size_config.dart';
 
 class Categories extends StatelessWidget {
